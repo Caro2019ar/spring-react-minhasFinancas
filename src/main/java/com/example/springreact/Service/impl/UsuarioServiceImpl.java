@@ -4,6 +4,7 @@ import com.example.springreact.Exceptions.ErroAutenticacao;
 import com.example.springreact.Exceptions.RegraNegocioException;
 import com.example.springreact.Service.UsuarioService;
 import com.example.springreact.model.entity.Usuario;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.springreact.repository.UsuarioRepository;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,9 +15,9 @@ import java.util.Optional;
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
 
-
+    @Autowired
     private UsuarioRepository repository;
-
+    @Autowired
     public UsuarioServiceImpl(UsuarioRepository repository) {
         this.repository = repository;
     }
@@ -46,5 +47,10 @@ public class UsuarioServiceImpl implements UsuarioService {
     if(existe){
         throw  new RegraNegocioException("Já existe um usuario cadastrado com esse email");
     }
+    }
+
+    @Override
+    public Optional<Usuario> obterPorId(Long id) {
+        return repository.findById(id);
     }
 }

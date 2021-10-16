@@ -14,7 +14,8 @@ import javax.persistence.*;
 public class Usuario {
 
     @Id
-    @Column(name="id")
+    //@Column(name="id")
+    @EqualsAndHashCode.Include
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
 
